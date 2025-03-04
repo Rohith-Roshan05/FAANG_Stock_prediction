@@ -83,7 +83,7 @@ model = load_latest_model()
 @st.cache_data
 def load_historical_data():
     try:
-        historical_data = pd.read_csv("C:/Users/rohit/OneDrive/Desktop/streamlit/env/Scripts/FAANG_DATA_MLFLOW.csv")  # Update with actual path
+        historical_data = pd.read_csv("Z:\FAANG project\FAANG_DATA_MLFLOW.csv")  # Update with actual path
         historical_data["Date"] = pd.to_datetime(historical_data["Date"])
         historical_data.set_index("Date", inplace=True)
 
