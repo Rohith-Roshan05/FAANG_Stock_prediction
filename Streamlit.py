@@ -51,7 +51,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # Set MLflow tracking URI
-mlflow.set_tracking_uri("http://localhost:5000")  # Change if needed
+mlflow.set_tracking_uri("http://localhost:5000")  
 
 # Load the latest registered LinearRegression model from MLflow
 @st.cache_resource
@@ -83,13 +83,13 @@ model = load_latest_model()
 @st.cache_data
 def load_historical_data():
     try:
-        historical_data = pd.read_csv("Z:\FAANG project\FAANG_DATA_MLFLOW.csv")  # Update with actual path
+        historical_data = pd.read_csv("Z:\FAANG project\FAANG_DATA_MLFLOW.csv")  
         historical_data["Date"] = pd.to_datetime(historical_data["Date"])
         historical_data.set_index("Date", inplace=True)
 
         # Apply log transformation
         X_log_transformed = historical_data[["Open", "High", "Low", "Volume"]].apply(np.log1p)
-        y_log_transformed = np.log1p(historical_data["Close"])  # Assuming "Close" is the target variable
+        y_log_transformed = np.log1p(historical_data["Close"]) 
         return X_log_transformed, y_log_transformed
     except Exception as e:
         st.error(f"⚠️ Error loading historical data: {e}")
@@ -117,7 +117,7 @@ input_df = pd.DataFrame([[open_val, high_val, low_val, volume_val]],
 # Ensure all required company one-hot columns exist
 required_columns = ["Company_Amazon", "Company_Apple", "Company_Facebook", "Company_Google", "Company_Netflix"]
 for col in required_columns:
-    input_df[col] = 0  # Set default value to 0
+    input_df[col] = 0  
 
 # Set the selected company to 1
 input_df[f"Company_{company}"] = 1
